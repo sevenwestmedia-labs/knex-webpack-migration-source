@@ -2,7 +2,9 @@ import Knex from 'knex'
 
 // Hack to support require.context in tests
 if (process.env.NODE_ENV === 'test' && typeof require.context === 'undefined') {
+    // tslint:disable-next-line:no-var-requires
     const fs = require('fs')
+    // tslint:disable-next-line:no-var-requires
     const path = require('path')
 
     const requireContext = (
@@ -17,11 +19,15 @@ if (process.env.NODE_ENV === 'test' && typeof require.context === 'undefined') {
                 const fullPath = path.resolve(directory, file)
 
                 if (fs.statSync(fullPath).isDirectory()) {
-                    if (scanSubDirectories) readDirectory(fullPath)
+                    if (scanSubDirectories) {
+                        readDirectory(fullPath)
+                    }
                     return
                 }
 
-                if (!regularExpression.test(fullPath)) return
+                if (!regularExpression.test(fullPath)) {
+                    return
+                }
 
                 files[fullPath] = true
             })
@@ -41,7 +47,7 @@ if (process.env.NODE_ENV === 'test' && typeof require.context === 'undefined') {
 }
 
 // Todo: make match interface
-export class WebpackMigrationSource  {
+export class WebpackMigrationSource {
     constructor(
         private migrationContext: __WebpackModuleApi.RequireContext,
         private shouldRunScript: (script: string) => boolean = () => true
