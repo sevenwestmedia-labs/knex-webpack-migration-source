@@ -1,0 +1,47 @@
+{
+  "name": "knex-webpack-migration-source",
+  "version": "0.0.0-development",
+  "description": "",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "scripts": {
+    "prepack": "yarn build",
+    "build": "yarn build:es2015 && yarn build:esm && yarn build:cjs",
+    "build:es2015": "tsc --module es2015 --target es2015 --lib es2015 --outDir dist/es2015 -p tsconfig.build.json",
+    "build:esm": "tsc --module es2015 --target es5 --outDir dist/esm -p tsconfig.build.json",
+    "build:cjs": "tsc --module commonjs --target es5 --outDir dist/cjs -p tsconfig.build.json",
+    "test": "jest",
+    "lint": "tslint -p .",
+    "verify": "yarn lint && yarn test && yarn build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sevenwestmedia-labs/knex-webpack-migration-source.git"
+  },
+  "keywords": [
+    "knex",
+    "migrations"
+  ],
+  "author": "Jake Ginnivan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sevenwestmedia-labs/knex-webpack-migration-source/issues"
+  },
+  "homepage": "https://github.com/sevenwestmedia-labs/knex-webpack-migration-source#readme",
+  "devDependencies": {
+    "@types/jest": "^23.3.11",
+    "jest": "^23.6.0",
+    "knex": "^0.16.3",
+    "semantic-release": "^15.13.2",
+    "ts-jest": "^23.10.5",
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2"
+  },
+  "peerDependencies": {
+    "knex": "^0.16.3"
+  },
+  "dependencies": {
+    "@types/node": "^10.12.18",
+    "@types/webpack-env": "^1.13.6"
+  }
+}

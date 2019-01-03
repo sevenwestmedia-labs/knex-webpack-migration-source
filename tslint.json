@@ -1,0 +1,12 @@
+{
+    "extends": [
+        "tslint:latest",
+        "tslint-eslint-rules",
+        "tslint-config-prettier"
+    ],
+    "rules": {
+        "member-access": false,
+        "interface-name": false,
+        "no-implicit-dependencies": false
+    }
+}
